@@ -1,0 +1,25 @@
+<%- include("partials/header"); %>
+
+
+<div class = "container">
+	<%shoes.forEach((shoe)=>{%>
+	
+	<div class="card" style="width: 18rem;">
+	  <img src="<%=shoe.image%>" class="card-img-top" alt="...">
+	  <div class="card-body">
+		<h5 class="card-title"><%=shoe.brand%></h5>
+		<p class="card-text">My name is <%=shoe.name%> and I'm trying to sell this shoe.</p>
+		<a href="/shoes/<%=shoe._id%>/edit" class="btn btn-primary">Edit</a>
+		<a href="/shoes/<%=shoe._id%>" class="btn btn-primary">Show</a>
+		  <form action = "/shoes/<%=shoe._id%>?_method=DELETE" method="POST">
+		<button class ="btn btn-primary">
+			Delete
+			  </button>
+		  </form>
+	  </div>
+	</div>
+	<%});%>
+</div>
+
+
+<%- include("partials/footer");%>

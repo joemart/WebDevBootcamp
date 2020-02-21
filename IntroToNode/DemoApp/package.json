@@ -1,0 +1,15 @@
+{
+  "name": "demoapp",
+  "version": "1.0.0",
+  "description": "A simple demonstration of an npm package.",
+  "main": "index.js",
+  "dependencies": {
+    "cat-me": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joe",
+  "license": "ISC"
+}

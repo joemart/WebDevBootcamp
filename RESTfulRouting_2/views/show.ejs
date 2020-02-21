@@ -1,0 +1,34 @@
+<%- include ("partials/header"); %>
+
+
+	<a class = "btn btn-primary" href="/">Go back</a>
+
+
+<div class = "container col-sm-12 col-md-6 col-lg-4">
+		
+		<div class="card" style="width: 18rem;">
+		  <img src="<%=dog.image%>" class="card-img-top">
+		  <div class="card-body">
+			<h5 class="card-title">HELLO MY NAME IS <%=dog.name%></h5>
+			<p class="card-text">I'M A <%=dog.breed%> AND I'M 
+			  <%if (dog.neutered == true) {%>
+			  NEUTERED.
+			  <%}else{%>
+			  NOT NEUTERED.
+			  <%}%>
+			  I WAS CREATED IN <%=dog.created.toDateString()%>
+			  </p>
+			  
+			  <form action="/dogs/<%=dog._id%>?_method=DELETE" method="post">
+				  <button class = "btn btn-primary">
+					  DELETE
+				  </button>
+			  </form>
+			<a class="btn btn-primary" href="/dogs/<%=dog._id%>/edit">Edit</a>
+		  </div>
+		</div>
+
+	
+</div>
+
+<%- include ("partials/footer"); %>

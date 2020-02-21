@@ -1,0 +1,18 @@
+<%- include ("partials/header"); %>
+
+<h1>
+	 edit page
+</h1>
+
+
+<form action = "/dogs/<%=dog._id%>?_method=PUT" method = "post">
+	<input type = "text" placeholder = "name" name="dog[name]" value="<%=dog.name%>">
+	<input type = "text" placeholder = "breed" name="dog[breed]" value="<%=dog.breed%>">
+	<input type = "text" placeholder = "image" name="dog[image]" value="<%=dog.image%>">
+	<input type = "text" placeholder = "neutered" name="dog[neutered]" value="<%=dog.neutered%>">
+	<button>
+		submit
+	</button>
+</form>
+
+<%- include ("partials/footer"); %>

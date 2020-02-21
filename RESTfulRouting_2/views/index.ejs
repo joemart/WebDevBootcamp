@@ -1,0 +1,28 @@
+<%- include ("partials/header"); %>
+<h1>
+	 dogs
+</h1>
+
+<div class = "container col-sm-12 col-md-6 col-lg-4">
+		<% dogs.forEach((dog)=>{%>
+		<div class="card" style="width: 18rem;">
+		  <img src="<%=dog.image%>" class="card-img-top">
+		  <div class="card-body">
+			<h5 class="card-title">HELLO MY NAME IS <%=dog.name%></h5>
+			<p class="card-text">I'M A <%=dog.breed%> AND I'M 
+			  <%if (dog.neutered == true) {%>
+			  NEUTERED.
+			  <%}else{%>
+			  NOT NEUTERED.
+			  <%}%>
+			  I WAS CREATED IN <%=dog.created.toDateString()%>
+			  </p>
+			<a href="/dogs/<%=dog._id%>" class="btn btn-primary">See</a>
+			<a href="/dogs/<%=dog._id%>/edit" class="btn btn-primary">Edit</a>
+		  </div>
+		</div>
+
+	<%});%>
+</div>
+
+<%- include("partials/footer"); %>

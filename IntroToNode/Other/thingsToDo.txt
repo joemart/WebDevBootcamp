@@ -1,0 +1,2 @@
+1) Remember how to use forEach
+2) Practice concat " cat- " 

@@ -1,0 +1,17 @@
+<h1>
+	This is friends
+</h1>
+
+<% for(var i = 0; i<friends.length; i++){ %>
+<li><%=friends[i]%></li>
+<% } %>
+
+<form action= "/newFriend" method = "POST">
+	<div>
+		<label for="name">Name:</label>
+		<input type = "text" id="name" name="newFriend">
+		<button type= "submit">
+			 TOUCH ME!!
+		</button>
+	</div>
+</form>

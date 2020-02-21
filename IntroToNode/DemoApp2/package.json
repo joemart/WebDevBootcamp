@@ -1,0 +1,14 @@
+{
+  "name": "demoapp2",
+  "version": "1.0.0",
+  "description": "Another demo app to test.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joe",
+  "license": "ISC",
+  "dependencies": {
+    "knock-knock-jokes": "^1.7.0"
+  }
+}
