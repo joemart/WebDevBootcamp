@@ -1,0 +1,19 @@
+body{
+	
+}
+
+.thumbnail img {
+	width:100%;
+}
+
+.thumbnail {
+	padding:0;
+}
+
+.thumbnail .well {
+	padding:10px;
+}
+
+.thumbnail .caption-full{
+	padding:10px
+}
