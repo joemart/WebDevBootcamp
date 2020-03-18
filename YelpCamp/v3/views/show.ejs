@@ -8,11 +8,11 @@
 	<img src="<%=campground.image%>">
 	<p>
 		<%=campground.description%> 
-		
-<!-- 	description not showing -->
 	</p>
 
-
+	<% campground.comments.forEach((x)=>{%>
+	<p><strong><%=x.author%></strong> - <%=x.text%></p>
+<%})%>
 
 
 

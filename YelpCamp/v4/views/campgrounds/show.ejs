@@ -1,0 +1,76 @@
+<%- include("../partials/header"); %>
+<h1>
+	 This is the show template
+</h1>
+
+<div class = "container">
+	<div class = "row">
+		<div class = "col-sm-3 col-md-3 col-lg-3">
+			<p class ="lead">
+				YelpCamp
+			</p>
+			<div class = "list-group">
+				<li class = "list-group-item active">Info 1</li>
+				<li class = "list-group-item">Info 2</li>
+				<li class = "list-group-item">Info 3</li>
+			</div>
+		</div>
+		<div class = "col-sm-9 col-md-9 col-lg-9">
+			<div class = "thumbnail">
+				
+					<img style = "width:100%;" class = "img-responsive" src="<%=campground.image%>">
+
+					<div class ="caption-full">
+						<h4 class = "pull-right">
+							$0.99
+						</h4>
+						<h2>
+							<p><%=campground.name%></p>
+						</h2> 
+						<h3>
+							<%=campground.description%> 
+						</h3>
+					</div>	
+				
+			<div class = "well">
+				<div class = "text-right">
+					<a href = "/campgrounds/<%= campground._id%>/comments/new" class = "btn btn-success">Add New Comment</a>	</div>
+				<hr>
+				
+			
+				<div class = "row">
+					<div class = "col-lg-12 col-md-12 col-sm-12">
+						<% campground.comments.forEach((x)=>{%>
+
+							<p><%=x.author%> </p> - <p class = "pull-right">10 days ago</p>
+							<span><%=x.text%></span>
+						<%})%>
+					</div>
+				</div>	
+				
+						
+					
+				
+				
+				
+			</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	
+
+
+
+
+
+<div>
+	<a href="/campgrounds" class= "btn btn-primary" > Go back </a>
+</div>
+
+
+
+<%- include("../partials/footer"); %>

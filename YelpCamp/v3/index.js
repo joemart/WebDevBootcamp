@@ -56,11 +56,26 @@ app.get("/campgrounds/new", (req,res) =>{
 	res.render("new");
 });
 
-app.get("/campgrounds/:id", (req,res) =>{
-	campground.findById(req.params.id).populate("comments").exec( (err, foundData)=>{
-		if(err) console.log(err)
-		else res.render("show", {campground:foundData});
-	});
+app.get("/campgrounds/:id", async (req,res) =>{
+		// campground.findById(req.params.id).populate("comments").exec( (err, foundData)=>{
+		// 	console.log("The data found is " + foundData)
+		// 	if(err) console.log(err)
+		// 	else res.render("show", {campground:foundData})
+		// });
+	
+	try{
+	
+		
+			let foundData = await campground.findById(req.params.id).populate("comments");
+			res.render("show", {campground:foundData});
+		
+	}
+	catch(e)
+		{
+			console.log(e)
+			res.redirect("/campgrounds")
+		}
+		
 	
 });
 
