@@ -41,9 +41,6 @@ app.get("/", (req,res)=>{
 });
 
 
-
-
-
 app.use("/campgrounds", campgroundRouter)
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
