@@ -1,4 +1,6 @@
 let route = require("express").Router()
+let campground = require("../models/campground")
+
 
 route.get("/", async (req,res)=>{
 	try{

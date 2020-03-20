@@ -28,15 +28,29 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 // seedDB.seedDB(); //delete campgrounds
+let c = 0;
+let hello = (req,res,next) =>{
+	c+=1
+	console.log(c)
+	next()
+}
 
+let no = (req,res,next) =>{
+	console.log("nonono")
+	next()
+}
+app.use(no)
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'))
 
-app.get("/", (req,res)=>{
+app.get("/",   (req,res)=>{
 	res.render("landing");
 });
+
+
+
 
 
 app.use("/campgrounds", campgroundRouter)
