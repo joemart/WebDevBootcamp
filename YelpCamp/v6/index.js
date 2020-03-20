@@ -12,6 +12,8 @@ let express 	= require("express"),
 
 	,campgroundRouter = require("./Routes/campground")
 	,registerRouter		= require("./Routes/register")
+	,loginRouter 		= require("./Routes/login")
+	,logoutRouter 		= require("./Routes/logout")
 
 ;
 
@@ -28,24 +30,13 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 // seedDB.seedDB(); //delete campgrounds
-let c = 0;
-let hello = (req,res,next) =>{
-	c+=1
-	console.log(c)
-	next()
-}
 
-let no = (req,res,next) =>{
-	console.log("nonono")
-	next()
-}
-app.use(no)
 
-app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended:true}));
+app.set("view engine", "ejs")
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(__dirname + '/public'))
 
-app.get("/",   (req,res)=>{
+app.get("/", (req,res)=>{
 	res.render("landing");
 });
 
@@ -55,6 +46,23 @@ app.get("/",   (req,res)=>{
 
 app.use("/campgrounds", campgroundRouter)
 app.use("/register", registerRouter)
+app.use("/login", loginRouter)
+app.use("/logout", logoutRouter)
+
+app.use((req,res,next)=>{
+	const err = new Error("not found")
+	err.status = 404;
+	next(err)
+})
+
+app.use((err,req,res,next)=>{
+	res.status(err.status || 500)
+	res.json({
+		error:{
+			message:err.message
+		}
+	})
+})
 
 app.listen(3000, process.env.IP, () =>{
 	console.log("Yelpcamp server is up");
