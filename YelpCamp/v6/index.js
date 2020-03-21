@@ -14,6 +14,8 @@ let express 	= require("express"),
 	,registerRouter		= require("./Routes/register")
 	,loginRouter 		= require("./Routes/login")
 	,logoutRouter 		= require("./Routes/logout")
+	,secretRouter 		= require("./Routes/secret")
+	,evenMoreSecretRouter =  require("./Routes/evenMoreSecret")
 
 ;
 
@@ -40,11 +42,18 @@ app.get("/", (req,res)=>{
 	res.render("landing");
 });
 
+let isLoggedIn = (req,res,next) =>{
+	if(req.isAuthenticated()) return next()
+		res.redirect("/login")
+}
+
 
 app.use("/campgrounds", campgroundRouter)
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 app.use("/logout", logoutRouter)
+app.use("/secret",  secretRouter)
+app.use("/evenMoreSecret", isLoggedIn, evenMoreSecretRouter)
 
 app.use((req,res,next)=>{
 	const err = new Error("not found")

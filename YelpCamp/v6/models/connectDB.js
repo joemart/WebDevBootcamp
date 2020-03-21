@@ -1,5 +1,5 @@
 let mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost/yelpcamp_v4",{
+mongoose.connect("mongodb://localhost/yelpcamp_v6",{
 	useNewUrlParser: true, 
 	useUnifiedTopology: true,
 	useFindAndModify: false,
