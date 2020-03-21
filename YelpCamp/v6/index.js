@@ -31,7 +31,7 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-// seedDB.seedDB(); //delete campgrounds
+seedDB.seedDB(); //delete campgrounds
 
 
 app.set("view engine", "ejs")
@@ -48,7 +48,7 @@ let isLoggedIn = (req,res,next) =>{
 }
 
 
-app.use("/campgrounds", campgroundRouter)
+app.use("/campgrounds", isLoggedIn, campgroundRouter)
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 app.use("/logout", logoutRouter)

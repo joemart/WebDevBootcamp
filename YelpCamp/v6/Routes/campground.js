@@ -1,5 +1,6 @@
 let route = require("express").Router()
 let campground = require("../models/campground")
+let comment 	= require("../models/comments")
 
 
 route.get("/", async (req,res)=>{
@@ -51,7 +52,8 @@ route.get("/:id/comments/new", async(req,res)=>{
 	}
 })
 
-route.post("/:id/comments", async (req,res)=>{
+
+route.post("/:id/comments",  async (req,res)=>{
 	try{
 		
 		let com = req.body.comment
