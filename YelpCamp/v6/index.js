@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+	require('dotenv').config({path:"./config/.env"})
+}
+
 let express 	= require("express"),
 	app 		= express(),
 	bodyParser 	= require("body-parser"),
@@ -31,7 +35,12 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-seedDB.seedDB(); //delete campgrounds
+app.use((req,res,next)=>{
+	res.locals.currentUser = req.user
+	next()
+})
+
+// seedDB.seedDB(); //delete campgrounds
 
 
 app.set("view engine", "ejs")
@@ -39,7 +48,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(__dirname + '/public'))
 
 app.get("/", (req,res)=>{
-	res.render("landing");
+	res.render("landing",{currentUser:req.user});
 });
 
 let isLoggedIn = (req,res,next) =>{
@@ -52,7 +61,7 @@ app.use("/campgrounds", isLoggedIn, campgroundRouter)
 app.use("/register", registerRouter)
 app.use("/login", loginRouter)
 app.use("/logout", logoutRouter)
-app.use("/secret",  secretRouter)
+app.use("/secret", isLoggedIn, secretRouter)
 app.use("/evenMoreSecret", isLoggedIn, evenMoreSecretRouter)
 
 app.use((req,res,next)=>{

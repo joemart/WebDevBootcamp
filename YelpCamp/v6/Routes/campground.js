@@ -55,14 +55,14 @@ route.get("/:id/comments/new", async(req,res)=>{
 
 route.post("/:id/comments",  async (req,res)=>{
 	try{
-		
+
 		let com = req.body.comment
-		let author = req.body.author
-		
-		let C = await comment.create({text:com, author:author})
+		let {_id, username} = req.user
+		let C = await comment.create({text:com, author:{_id,username}})
 		let CG = await campground.findById(req.params.id)
 		await CG.comments.push(C._id)
 		await CG.save()
+		await C.save()
 		
 		
 		res.redirect("/campgrounds/"+req.params.id)

@@ -7,21 +7,21 @@ route.get("/",async (req,res,next)=>{
 	
 })
 
-route.post("/", passport.authenticate("local",{
-	successRedirect:"/secret",
-	failureReject:"/login"
-}),  async (req,res,next)=>{
+route.post("/", async (req,res,next)=>{
+	try{
+		passport.authenticate("local", (err, user, info)=>{
 
-	(  (err, user, info)=>{
-
-			if (err) { return next(err); }
-		    if (!user) { return res.redirect('/login'); }
-		    req.logIn(user, function(err) {
-		      if (err) { return next(err); }
-		      return res.redirect('/users/' + user.username);
-		    });
-		})(req, res, next)
-
+		if (err) { return next(err); }
+	    if (!user) { return res.redirect('/login'); }
+	    req.logIn(user, function(err) {
+	      if (err) { return next(err); }
+	      return res.redirect('/campgrounds');
+	    });
+			})(req, res, next)
+	}
+	catch(e){
+		console.log(e)
+	}
 		})
 
 module.exports = route
